@@ -49,7 +49,7 @@ def percent_change(asset):
     if not symbol_bars:
         return 0
     week_open = symbol_bars[0].o
-    week_close = symbol_bars[-1].c
+    week_close = symbol_bars[-5].c
     percent_change = (week_close - week_open) / week_open * 100
     return percent_change
 
@@ -63,7 +63,7 @@ print(percent_change(api.get_asset("AAPL")))
 import math
 def buy():
     assets_to_buy=[]
-    for asset in api.list_assets()[:40]:#Only look at first 200
+    for asset in api.list_assets()[:200]:#Only look at first 200
         if asset.tradable:
             if (percent_change(asset)<-10):
                 assets_to_buy.append(asset.symbol)
